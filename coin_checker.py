@@ -11,7 +11,7 @@ import settings
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(settings.BOT_NAME)
 
-Coin = namedtuple('coin', 'id symbol name price_btc price_usd')
+Coin = namedtuple('coin', ['id', 'symbol', 'name'])
 
 
 class CoinChecker:
@@ -57,8 +57,6 @@ class CoinChecker:
                     c['id'],
                     c['symbol'],
                     c['name'],
-                    c['price_btc'],
-                    c['price_usd'],
                 ) for c in resp_json
             )
 
@@ -70,10 +68,10 @@ class CoinChecker:
 
     @staticmethod
     def compose_message(coin_info):
-        return f'*ID:* {coin_info.id}\n' \
-               f'*Symbol:* {coin_info.symbol}\n' \
-               f'*Name:* {coin_info.name}\n' \
-               f'*Price:* ₿ {coin_info.price_btc}, $ {coin_info.price_usd}'
+        return (
+            f'[{coin_info.name} ({coin_info.symbol})]'
+            f'(https://coinmarketcap.com/currencies/{coin_info.id}/)'
+        )
 
 
 if __name__ == '__main__':
