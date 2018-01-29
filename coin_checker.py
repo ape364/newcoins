@@ -11,13 +11,13 @@ import settings
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(settings.BOT_NAME)
 
-Coin = namedtuple('coin', ['id', 'symbol', 'name'])
+Coin = namedtuple('Coin', ['id', 'symbol', 'name'])
 
 
 class CoinChecker:
     bot = Bot(settings.BOT_TOKEN)
     channel = bot.channel(settings.CHANNEL_ID)
-    url = 'https://api.coinmarketcap.com/v1/ticker/'
+    url = 'https://api.coinmarketcap.com/v1/ticker?limit=0'
 
     async def check(self):
         api_coins = await self.api_coins()
