@@ -1,7 +1,6 @@
 import asyncpg
 
-import settings
-from coin_checker import Coin
+from settings import POSTGRES_HOST, POSTGRES_DB, POSTGRES_PASSWORD, POSTGRES_USER
 
 pool = None  # asyncpg connection pool
 
@@ -16,7 +15,12 @@ async def create_tables():
 
 async def init_db():
     global pool
-    pool = await asyncpg.create_pool(settings.DATABASE_URL)
+    pool = await asyncpg.create_pool(
+        host=POSTGRES_HOST,
+        database=POSTGRES_DB,
+        user=POSTGRES_USER,
+        password=POSTGRES_PASSWORD
+    )
     await create_tables()
 
 

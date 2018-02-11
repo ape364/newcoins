@@ -3,7 +3,10 @@ import os
 BOT_TOKEN = os.environ['NEWCOINS_BOT_TOKEN']
 BOT_NAME = 'NewCoinsNotifyBot'
 
-DATABASE_URL = os.environ['DATABASE_URL']
+POSTGRES_HOST = os.environ['POSTGRES_HOST']
+POSTGRES_DB = os.environ['POSTGRES_DB']
+POSTGRES_USER = os.environ['POSTGRES_USER']
+POSTGRES_PASSWORD = os.environ['POSTGRES_PASSWORD']
 
 CHECK_INTERVAL = int(os.environ['NEWCOINS_BOT_CHECK_INTERVAL'])  # seconds
 
