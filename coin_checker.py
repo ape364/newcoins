@@ -81,8 +81,7 @@ if __name__ == '__main__':
         logger.info('bot started')
         checker = CoinChecker()
         loop.run_until_complete(checker.check())
-        asyncio.ensure_future(checker.periodic(), loop=loop)
-        loop.run_forever()
+        loop.run_until_complete(checker.periodic())
     except KeyboardInterrupt:
         pass
     finally:
